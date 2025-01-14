@@ -1,18 +1,18 @@
 二次封装测试包
 ```aiignore
-npm install hl-xx-ui
+npm install hilai-ui
 ```
 
 ```aiignore
 // main.ts
 import { createApp } from 'vue'
-import hlxxui from 'hl-xx-ui'
-import 'hl-xx-ui/dist/hl-xx-ui.css'
+import hilaiui from 'hilai-ui'
+import 'hilai-ui/dist/hilai-ui.css'
 import App from './App.vue'
 
 const app = createApp(App)
 
-app.use(hlxxui)
+app.use(hailiui)
 app.mount('#app')
 ```
 
