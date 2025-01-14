@@ -1,0 +1,43 @@
+{
+  "name": "hilai-ui",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/hilai-ui.umd.js",
+  "module": "./dist/hilai-ui.es.js",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "balloons-js": "^0.0.2",
+    "element-plus": "^2.9.2",
+    "lodash-es": "^4.17.21",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaxia125/hilai-ui.git"
+  },
+  "description": "二次封装测试包 ```aiignore npm install hl-xx-ui ```",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "author": "xiaxia125",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaxia125/hilai-ui/issues"
+  },
+  "homepage": "https://github.com/xiaxia125/hilai-ui#readme"
+}
