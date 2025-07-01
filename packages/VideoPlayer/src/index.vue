@@ -5,10 +5,10 @@
     >
     </div>
   </template>
-  
+
   <script setup>
   import {ref, onMounted} from 'vue'
-  
+
   const props = defineProps({
     url: {
       type: String,
@@ -23,11 +23,11 @@
    * H5视频播放插件
    */
   const player = ref('') //播放器实例
-  
+
   onMounted(() => {
     initPlayer();
   });
-  
+
   /**
    * 播放视频
    */
@@ -40,8 +40,8 @@
       // iCurrentSplit: Number(split),
       // openDebug: true,
       // // 当容器div#play_window有固定宽高时，可不传iWidth和iHeight，窗口大小将自适应容器宽高
-      iWidth: 456,
-      iHeight: 300,
+      // iWidth: 456,
+      // iHeight: 300,
       // 分屏播放，默认最大分屏4*4
       // 样式
       oStyle: {
@@ -53,21 +53,18 @@
       windowEventSelect: function (index) {
         //插件选中窗口回调
         // console.log("windowSelect callback: ", index);
-  
       },
-  
+
       pluginErrorHandler: function (index, iErrorCode, oError) {
-  
         // 插件错误回调
         // console.log("插件错误回调: ", index, iErrorCode, oError);
         // 延时重置isReferTextExecuted变量为false
-  
         // if (that.playWindowIndex.includes(Number(index))) {
         //   let i = that.playWindowIndex.indexOf(Number(index));
         //   that.playWindowIndex.splice(i, 1);
         // }
       },
-  
+
       firstFrameDisplay: function (index, iWidth, iHeight) {
         //首帧显示回调
         // console.log(
@@ -81,16 +78,16 @@
         //性能不够回调
       },
     });
-  
+
     play(0);
-  
+
   }
-  
+
   /**
    * 播放视频
    * @param windowIndex
    */
-  
+
   function play(windowIndex) {
     if (props.url === ''){
       ElMessage.error('未传递视频url!')
@@ -109,11 +106,10 @@
         }
     );
   }
-  
+
   </script>
-  
+
   <style scoped>
-  
+
   </style>
-  
-  
+

@@ -49,20 +49,27 @@ export default defineConfig({
             { text: "Button", link: "/components/HlButton/base.md" },
           ]
         },
-          {
-            text: "表格组件",
-            collapsed: false,
-            items: [
-              { text: "CrossTableSelector", link: "/components/HlCrossTableSelector/base.md" },
-            ]
-          },
-          {
-            text: "文件上传组件",
-            collapsed: false,
-            items: [
-              { text: "FileUpload", link: "/components/HlFileUpload/base.md" },
-            ]
-          },
+        {
+          text: "表格组件",
+          collapsed: false,
+          items: [
+            { text: "CrossTableSelector", link: "/components/HlCrossTableSelector/base.md" },
+          ]
+        },
+        {
+          text: "文件上传组件",
+          collapsed: false,
+          items: [
+            { text: "FileUpload", link: "/components/HlFileUpload/base.md" },
+          ]
+        },
+        {
+          text: "视频组件",
+          collapsed: false,
+          items: [
+            { text: "VideoPlayer", link: "/components/HlVideoPlayer/base.md" },
+          ]
+        },
       ]
     }
   },
