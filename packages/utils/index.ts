@@ -140,3 +140,20 @@ export function formatNumber(
   }
   return prefix + integer + decimals + suffix
 }
+
+/**
+ * 加载脚本
+ * @param src 
+ * @returns 
+ */
+export function loadScript(src: string) {
+  return new Promise((resolve, reject) => {
+    if (typeof window === 'undefined') return reject('Not in browser')
+    if (document.querySelector(`script[src=\"${src}\"]`)) return resolve()
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = resolve
+    script.onerror = reject
+    document.head.appendChild(script)
+  })
+}
