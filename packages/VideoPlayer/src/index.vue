@@ -1,13 +1,15 @@
 <template>
     <div
-        id="videoFrame"
+        :id="id"
+        class="video-player-h5"
         style="width: 100%; height: 100%"
     >
     </div>
   </template>
 
   <script setup>
-  import {ref, onMounted} from 'vue'
+  import '../assets/js/h5player.min.js'
+  import {ref, onMounted,onUnmounted} from 'vue'
 
   const props = defineProps({
     url: {
@@ -24,26 +26,32 @@
    */
   const player = ref('') //播放器实例
 
+  const id = ref(crypto.randomUUID())
   onMounted(() => {
     initPlayer();
   });
 
+  onUnmounted(() => {
+    closeVideo();
+  });
+
+  function closeVideo() {
+    player.value && player.value.JS_StopRealPlayAll().then(
+        () => {
+          console.info('JS_StopRealPlayAll success');
+        },
+        (err) => {
+          console.info('JS_StopRealPlayAll failed');
+        }
+    );
+  }
   /**
    * 播放视频
    */
   function initPlayer() {
     player.value = new window.JSPlugin({
       // 需要英文字母开头 必填
-      szId: 'videoFrame',
-      // 必填,引用H5player.min.js的js相对路径
-      szBasePath: "../utils/js",
-      // iCurrentSplit: Number(split),
-      // openDebug: true,
-      // // 当容器div#play_window有固定宽高时，可不传iWidth和iHeight，窗口大小将自适应容器宽高
-      // iWidth: 456,
-      // iHeight: 300,
-      // 分屏播放，默认最大分屏4*4
-      // 样式
+      szId: id.value,
       oStyle: {
         border: "transparent",
         borderSelect: "transparent",
@@ -58,11 +66,6 @@
       pluginErrorHandler: function (index, iErrorCode, oError) {
         // 插件错误回调
         // console.log("插件错误回调: ", index, iErrorCode, oError);
-        // 延时重置isReferTextExecuted变量为false
-        // if (that.playWindowIndex.includes(Number(index))) {
-        //   let i = that.playWindowIndex.indexOf(Number(index));
-        //   that.playWindowIndex.splice(i, 1);
-        // }
       },
 
       firstFrameDisplay: function (index, iWidth, iHeight) {
@@ -70,9 +73,6 @@
         // console.log(
         //   `窗口${index}加载成功，分辨率为${iWidth}*${iHeight}`
         // );
-        // if (!that.playWindowIndex.includes(Number(index))) {
-        //   that.playWindowIndex.push(Number(index));
-        // }
       },
       performanceLack: function () {
         //性能不够回调

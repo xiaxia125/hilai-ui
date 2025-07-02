@@ -4,13 +4,15 @@ import type { Component, App } from "vue"
 import HlButton from "./button"
 import HlCrossTableSelector from "./CrossTableSelector"
 import HlFileUpload from "./FileUpload"
+import HlVideoPlayer from "./VideoPlayer"
 // 存储组件列表
 const components: {
   [propName: string]: Component
 } = {
   HlButton,
   HlCrossTableSelector,
-  HlFileUpload
+  HlFileUpload,
+  HlVideoPlayer
 }
 // 插件声明：声明所有插件
 // 插件注册：在 Vue 项目的入口文件中，通过 ( app.use(插件) ) 进行注册
@@ -39,7 +41,8 @@ if (typeof window !== "undefined" && window.Vue) {
 export {
   HlCrossTableSelector,
   HlButton,
-  HlFileUpload
+  HlFileUpload,
+  HlVideoPlayer
 }
 /**
  * @description 公共方法
