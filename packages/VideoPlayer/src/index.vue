@@ -49,6 +49,9 @@
    * 播放视频
    */
   function initPlayer() {
+    if (typeof window === "undefined") {
+      return
+    }
     player.value = new window.JSPlugin({
       // 需要英文字母开头 必填
       szId: id.value,
