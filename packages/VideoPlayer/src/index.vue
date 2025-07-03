@@ -32,8 +32,8 @@
       // 使用动态导入
       const h5playerModule = await import('h5player-js/h5player.min.js')
       // 或者使用 URL 构造器
-      const scriptUrl = new URL('h5player-js/h5player.min.js', import.meta.url).href
-      await loadScript(scriptUrl)
+      // const scriptUrl = new URL('h5player-js/h5player.min.js', import.meta.url).href
+      // await loadScript(scriptUrl)
     } catch (error) {
       console.error('加载失败:', error)
     }
