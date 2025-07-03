@@ -1,6 +1,6 @@
 {
   "name": "hilai-ui",
-  "version": "1.4.9",
+  "version": "1.5.2",
   "description": "Vue3 中基于Element-plus二次封装基础组件文档",
   "author": "hilai",
   "license": "MIT",
@@ -100,6 +100,7 @@
     "components"
   ],
   "dependencies": {
+    "h5player-js": "^1.0.3",
     "highlight.js": "^11.11.1"
   },
   "bugs": {
