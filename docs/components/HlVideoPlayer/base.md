@@ -4,7 +4,7 @@
 
 注意：播放器组件依赖 H5 插件，请提前下载并引入。
 
-[下载 h5player-js.zip 压缩包](/h5player-js.zip)
+[下载 h5player-js.zip 压缩包](/zip/h5player-js.zip)
 
 ## 安装
 1. 将 `h5player-js.zip` 压缩包解压到项目的 `public` 目录下。
