@@ -2,6 +2,20 @@
 
 基于 H5 视频播放插件的 Vue 组件，支持多种视频格式播放，提供高性能的视频播放体验。
 
+注意：播放器组件依赖 H5 插件，请提前下载并引入。
+
+[下载 h5player-js.zip 压缩包](/public/h5player-js.zip)
+
+## 安装
+1. 将 `h5player-js.zip` 压缩包解压到项目的 `public` 目录下。
+
+   ![H5Player 文件解压示例](/public/img/h5player_01.png)
+2. 在 HTML 文件的 `<head>` 标签中引入 `h5player-js.min.js` 文件。
+
+```javascript
+<script src="./public/js/h5player.min.js"></script> // 依据项目路径按照实际情况引入 h5player-js.min.js
+```
+
 ### 基础用法
 
 :::demo
@@ -69,3 +83,4 @@ performanceLack: function () {
 - 错误对象
 
 建议在应用中实现相应的错误处理逻辑，提供用户友好的错误提示。
+
