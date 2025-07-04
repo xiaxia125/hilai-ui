@@ -21,6 +21,10 @@ export default defineConfig({
         text: "开发文档",
         link: "/develop/KfDocs/base.md"
       },
+      {
+        text: "更新日志",
+        link: "/changelog/"
+      }
     ],
     sidebar: {
       "/guide/": [

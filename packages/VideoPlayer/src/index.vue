@@ -10,7 +10,7 @@
   <script setup>
   import {ref, onMounted,onUnmounted} from 'vue'
   import { ElMessage } from 'element-plus'
-  import { loadScript } from '../../utils'
+  
   const props = defineProps({
     url: {
       type: String,
@@ -27,23 +27,10 @@
   const player = ref(null)
 
   const id = ref(crypto.randomUUID())
-  async function loadH5PlayerScript() {
-    try {
-      // 使用动态导入
-      const h5playerModule = await import('h5player-js/h5player.min.js')
-      // 或者使用 URL 构造器
-      // const scriptUrl = new URL('h5player-js/h5player.min.js', import.meta.url).href
-      // await loadScript(scriptUrl)
-    } catch (error) {
-      console.error('加载失败:', error)
-    }
-  }
+
   onMounted(async () => {
-    if (typeof window !== 'undefined') {
-      await loadH5PlayerScript()
-      if (window.JSPlugin) {
-        initPlayer()
-      }
+    if (typeof window !== 'undefined' && window.JSPlugin) {
+      initPlayer()
     }
   });
 
