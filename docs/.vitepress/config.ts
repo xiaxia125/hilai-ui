@@ -61,6 +61,13 @@ export default defineConfig({
           ]
         },
         {
+          text: "分页组件",
+          collapsed: false,
+          items: [
+            { text: "Pagination", link: "/components/HlPagination/base.md" },
+          ]
+        },
+        {
           text: "文件上传组件",
           collapsed: false,
           items: [

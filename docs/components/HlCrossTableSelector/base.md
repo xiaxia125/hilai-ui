@@ -1,156 +1,102 @@
-# HlCrossTableSelector 跨页多选表格组件
+# hl-cross-table-selector 跨页多选表格
 
-基于 Element Plus 的 `el-table` 二次封装，支持跨页勾选数据，解决分页后勾选数据丢失的问题。组件会自动记录用户勾选的数据，即使切换页码后依然保持勾选状态，方便用户进行批量操作。
+跨页多选表格组件，基于 Element Plus 的 `el-table` 封装。主要解决分页场景下的数据选择状态保持问题，支持列拖拽排序、显示/隐藏等配置功能。
+
+
+## 功能特性
+
+- ✨ 跨页数据选择状态保持
+- 🔄 列拖拽排序
+- 👁️ 列显示/隐藏配置
+- 🔍 支持列搜索
+- ⚡️ 列排序
+- 📱 响应式布局
 
 ## 基础用法
 
-最简单的跨页多选表格。
-
-:::demo
+:::demo 使用 `v-model` 进行数据双向绑定，通过 `columns` 配置表格列。支持跨页选择、列排序、搜索等功能。
 HlCrossTableSelector/base
 :::
 
-## 使用 columns 配置
+## 使用场景
 
-通过 `columns` 属性配置表格列，更加简洁。
+### 1. 批量操作
 
-:::demo
-HlCrossTableSelector/columns
-:::
+适用于需要跨页选择数据进行批量操作的场景，如：
+- 批量审核
+- 批量删除
+- 批量状态更新
+- 批量导出
 
-## 自定义列模板
+### 2. 列表配置
 
-支持通过插槽自定义列内容。
+支持个性化列表显示：
+- 自定义列显示/隐藏
+- 拖拽调整列顺序
 
-:::demo
-HlCrossTableSelector/slots
-:::
+## API
 
-## 禁用选择功能
-
-通过 `show-selection` 属性控制是否显示选择框。
-
-:::demo
-HlCrossTableSelector/disable-selection
-:::
-
-## 属性
-
-除继承 `el-table` 的所有属性外，新增以下属性：
+### Props
 
 | 参数 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
-| v-model | 多选返回值，选中的行数据数组 | Array | [] |
-| show-selection | 是否开启勾选功能 | Boolean | true |
-| columns | 表格列配置，继承 Table-column 属性 | Array | [] |
-| selection-key | 用于标识行的唯一键，默认为 'id' | String | 'id' |
-| keep-selection | 是否保持跨页选择状态 | Boolean | true |
+| v-model | 选中的行数据数组 | `array` | `[]` |
+| columns | 表格列配置，继承 el-table-column 的属性 | `array` | `[]` |
+| data | 表格数据 | `array` | `[]` |
+| showSelection | 是否显示选择列 | `boolean` | `false` |
+| loading | 加载状态 | `boolean` | `false` |
+| settingBtnText | 列设置按钮文本 | `string` | `'列表配置'` |
 
-## 事件
+### Column 配置项
 
-继承 `el-table` 的所有事件，并新增以下事件：
+| 参数 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| prop | 对应列内容的字段名 | `string` | - |
+| label | 显示的标题 | `string` | - |
+| slot | 自定义列插槽名称 | `string` | - |
+| sortable | 是否可排序 | `boolean` | `false` |
+| searchable | 是否可搜索 | `boolean` | `false` |
+| isChecked | 是否显示该列 | `boolean` | `true` |
+| width | 列宽度 | `string/number` | - |
+| minWidth | 最小列宽度 | `string/number` | - |
+| fixed | 列是否固定 | `string/boolean` | - |
+| columnProps | 透传给 el-table-column 的属性 | `object` | - |
+
+### Events
 
 | 事件名 | 说明 | 回调参数 |
 |--------|------|----------|
-| select | 当选择项发生变化时会触发该事件 | (selection, row) |
-| select-all | 当用户手动勾选全选 Checkbox 时触发的事件 | (selection) |
-| selection-change | 当选择项发生变化时会触发该事件 | (selection) |
+| update:modelValue | 选中数据变化时触发 | `(selection: array)` |
+| select | 手动勾选数据行时触发 | `(selection: array, row: object)` |
+| select-all | 手动勾选全选时触发 | `(selection: array)` |
+| pagination-change | 分页变化时触发 | `(page: number)` |
+| sort-change | 排序变化时触发 | `({ prop: string, order: string })` |
+| search | 搜索条件变化时触发 | `(params: object)` |
+| columns-change | 列配置变化时触发 | `(columns: array)` |
 
-## 插槽
-
-继承 `el-table` 的所有插槽，主要包括：
+### Slots
 
 | 插槽名 | 说明 | 作用域参数 |
 |--------|------|------------|
-| empty | 空数据时的自定义内容 | — |
-| append | 插入至表格最后一行之后的内容 | — |
-| default | 自定义列的内容，会覆盖 columns 属性 | (row, column, $index) |
-
-## 方法
-
-| 方法名 | 说明 | 参数 |
-|--------|------|------|
-| clearSelection | 清空选择项 | — |
-| toggleRowSelection | 切换某一行的选中状态 | (row, selected) |
-| toggleAllSelection | 切换全选状态 | — |
-| getSelectionRows | 获取当前选中的行数据 | — |
-
-## 完整示例
-
-```vue
-<template>
-  <div>
-    <hl-cross-table-selector
-      v-model="selectedRows"
-      :data="tableData"
-      :columns="columns"
-      :show-selection="true"
-      selection-key="id"
-      @select="handleSelect"
-      @select-all="handleSelectAll"
-    >
-      <template #action="{ row }">
-        <el-button size="small" @click="handleEdit(row)">编辑</el-button>
-        <el-button size="small" type="danger" @click="handleDelete(row)">删除</el-button>
-      </template>
-    </hl-cross-table-selector>
-    
-    <div style="margin-top: 20px;">
-      <p>已选择 {{ selectedRows.length }} 项</p>
-      <el-button type="primary" @click="handleBatchOperation">批量操作</el-button>
-    </div>
-  </div>
-</template>
-
-<script setup>
-import { ref } from 'vue'
-import { HlCrossTableSelector } from 'hilai-ui'
-
-const selectedRows = ref([])
-
-const columns = [
-  { prop: 'id', label: 'ID', width: 80 },
-  { prop: 'name', label: '姓名', width: 120 },
-  { prop: 'email', label: '邮箱' },
-  { prop: 'phone', label: '电话', width: 120 },
-  { prop: 'status', label: '状态', width: 100 },
-  { prop: 'action', label: '操作', width: 150, slot: 'action' }
-]
-
-const tableData = ref([
-  { id: 1, name: '张三', email: 'zhangsan@example.com', phone: '13800138001', status: '正常' },
-  { id: 2, name: '李四', email: 'lisi@example.com', phone: '13800138002', status: '正常' },
-  { id: 3, name: '王五', email: 'wangwu@example.com', phone: '13800138003', status: '禁用' }
-])
-
-function handleSelect(selection, row) {
-  console.log('选择变化:', selection, row)
-}
-
-function handleSelectAll(selection) {
-  console.log('全选变化:', selection)
-}
-
-function handleEdit(row) {
-  console.log('编辑:', row)
-}
-
-function handleDelete(row) {
-  console.log('删除:', row)
-}
-
-function handleBatchOperation() {
-  console.log('批量操作:', selectedRows.value)
-}
-</script>
-```
+| headSearch | 表格顶部搜索区域 | - |
+| [column.slot] | 自定义列内容 | `{ row, column, $index }` |
 
 ## 注意事项
 
-1. **唯一标识**：确保每行数据都有唯一的标识字段（默认为 'id'），用于跨页选择状态管理。
+1. **列配置持久化**：列的显示/隐藏、排序等配置会触发 `columns-change` 事件，可以在此事件中进行配置的持久化处理。
 
-2. **性能优化**：当数据量很大时，建议使用虚拟滚动或分页加载来优化性能。
+2. **跨页选择**：组件会自动维护跨页选择的状态，切换分页时不会丢失已选择的数据。建议在以下场景使用：
+   - 大数据量分页展示
+   - 需要记住用户选择的数据
+   - 批量操作频繁的场景
 
-3. **内存管理**：组件会自动管理选择状态，但在组件销毁时会清理内存。
+3. **自定义列**：通过 `slot` 配置可以自定义列的渲染内容，slot 名称需要与 column 配置中的 `slot` 属性对应。常见用法：
+   - 状态标签展示
+   - 图片/文件预览
+   - 操作按钮组
+   - 自定义格式化
 
-4. **数据格式**：确保传入的数据格式符合 Element Plus Table 的要求。
+4. **搜索功能**：可以通过 `headSearch` 插槽自定义搜索区域，搜索条件变化时会触发 `search` 事件。支持：
+   - 单字段搜索
+   - 多条件组合搜索
+   - 自定义搜索组件

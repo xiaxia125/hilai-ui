@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import viteCompression from 'vite-plugin-compression' // 静态资源压缩
 import dts from 'vite-plugin-dts'
@@ -10,7 +9,6 @@ export default defineConfig({
   plugins: [
     vue(),
     dts(),
-    vueJsx(),
     // vueSetupExtend(),
     viteCompression({
       verbose: true,
@@ -19,7 +17,7 @@ export default defineConfig({
       threshold: 10240, // 压缩前最小文件大小
       algorithm: 'gzip', // 压缩算法
       ext: '.gz', // 文件类型
-    }),
+    })
   ],
   server: {
     host: '0.0.0.0',
@@ -31,7 +29,7 @@ export default defineConfig({
     // 配置别名
     alias: {
       // '@': resolve(__dirname, 'examples'),
-      '@': resolve(__dirname, 'packages'),
+      '@': resolve(__dirname, 'packages')
     },
     // 类型： string[] 导入时想要省略的扩展名列表。
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json', '.vue', '.mjs'],
@@ -48,11 +46,10 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
           'element-plus': 'ElementPlus'
-        },
-      },
+        }
+      }
     },
     lib: {
-      // entry: resolve(__dirname, 'packages/index.ts'),
       entry: './packages/index.ts',
       name: 'HilaiUI',
       formats: ['es', 'umd'],

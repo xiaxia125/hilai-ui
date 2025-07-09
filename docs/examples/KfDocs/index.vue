@@ -140,8 +140,8 @@
 
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import hljs from 'highlight.js'
-import 'highlight.js/styles/github.css' // 可以选择其他主题样式
+// import hljs from 'highlight.js'
+// import 'highlight.js/styles/github.css' // 可以选择其他主题样式
 
 const codeBlock1 = ref(null)
 const codeBlock2 = ref(null)
@@ -149,18 +149,18 @@ const codeBlock3 = ref(null)
 const codeBlock4 = ref(null)
 
 onMounted(() => {
-    if (codeBlock1.value) {
-        hljs.highlightElement(codeBlock1.value)
-    }
-    if (codeBlock2.value) {
-        hljs.highlightElement(codeBlock2.value)
-    }
-    if (codeBlock3.value) {
-        hljs.highlightElement(codeBlock3.value)
-    }
-    if (codeBlock4.value) {
-        hljs.highlightElement(codeBlock4.value)
-    }
+    // if (codeBlock1.value) {
+    //     hljs.highlightElement(codeBlock1.value)
+    // }
+    // if (codeBlock2.value) {
+    //     hljs.highlightElement(codeBlock2.value)
+    // }
+    // if (codeBlock3.value) {
+    //     hljs.highlightElement(codeBlock3.value)
+    // }
+    // if (codeBlock4.value) {
+    //     hljs.highlightElement(codeBlock4.value)
+    // }
 
 
 })

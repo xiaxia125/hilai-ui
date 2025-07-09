@@ -5,6 +5,7 @@ import HlButton from "./button"
 import HlCrossTableSelector from "./CrossTableSelector"
 import HlFileUpload from "./FileUpload"
 import HlVideoPlayer from "./VideoPlayer"
+import HlPagination from "./Pagination"
 // 存储组件列表
 const components: {
   [propName: string]: Component
@@ -12,7 +13,8 @@ const components: {
   HlButton,
   HlCrossTableSelector,
   HlFileUpload,
-  HlVideoPlayer
+  HlVideoPlayer,
+  HlPagination
 }
 // 插件声明：声明所有插件
 // 插件注册：在 Vue 项目的入口文件中，通过 ( app.use(插件) ) 进行注册
@@ -42,7 +44,8 @@ export {
   HlCrossTableSelector,
   HlButton,
   HlFileUpload,
-  HlVideoPlayer
+  HlVideoPlayer,
+  HlPagination
 }
 /**
  * @description 公共方法
