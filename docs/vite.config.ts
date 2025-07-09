@@ -11,5 +11,13 @@ export default defineConfig({
     port: 2222,
     open: true,
     https: false
-  }
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['legacy-js-api'],
+        api: 'modern-compiler'
+      }
+    }
+  },
 })

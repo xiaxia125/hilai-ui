@@ -1,3 +1,3 @@
-@import "vars.scss";
-@import "code.css";
-@import "custom.scss";
+@use "./vars.scss" as *;
+@use "./code.css" as *;
+@use "./custom.scss" as *;
