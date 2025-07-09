@@ -19,7 +19,7 @@
 
 <script setup>
 import { scrollTo } from '../../utils/scroll-to.ts'
-import { computed,useAttrs,useSlots } from 'vue'
+import { computed,useAttrs,useSlots, ref, onMounted } from 'vue'
 
 const attrs = useAttrs();
 const slots = useSlots();
@@ -42,7 +42,7 @@ const props = defineProps({
   // 移动端页码按钮的数量端默认值5
   pagerCount: {
     type: Number,
-    default: document.body.clientWidth < 992 ? 5 : 7
+    default: 5
   },
   layout: {
     type: String,

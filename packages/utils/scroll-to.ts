@@ -1,3 +1,11 @@
+// 扩展 Window 接口
+declare global {
+  interface Window {
+    webkitRequestAnimationFrame?: (callback: FrameRequestCallback) => number;
+    mozRequestAnimationFrame?: (callback: FrameRequestCallback) => number;
+  }
+}
+
 Math.easeInOutQuad = function(t, b, c, d) {
   t /= d / 2
   if (t < 1) {
@@ -8,9 +16,27 @@ Math.easeInOutQuad = function(t, b, c, d) {
 }
 
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-var requestAnimFrame = (function() {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60) }
-})()
+const requestAnimFrame = (typeof window !== 'undefined')
+  ? (window.requestAnimationFrame || 
+     window.webkitRequestAnimationFrame || 
+     window.mozRequestAnimationFrame || 
+     function(callback) { window.setTimeout(callback, 1000 / 60) })
+  : function(callback) { setTimeout(callback, 1000 / 60) }
+
+// 添加 isClient 判断
+const isClient = typeof window !== 'undefined'
+
+function setScrollTop(amount: number) {
+  if (!isClient) return
+  document.documentElement.scrollTop = amount
+  document.body.parentNode.scrollTop = amount
+  document.body.scrollTop = amount
+}
+
+function getScrollTop() {
+  if (!isClient) return 0
+  return document.documentElement.scrollTop || document.body.parentNode.scrollTop || document.body.scrollTop
+}
 
 /**
  * Because it's so fucking difficult to detect the scrolling element, just move them all
@@ -31,8 +57,9 @@ function position() {
  * @param {number} duration
  * @param {Function} callback
  */
-export function scrollTo(to, duration, callback) {
-  const start = position()
+export function scrollTo(to: number, duration: number = 500, callback?: () => void) {
+  if (!isClient) return
+  const start = getScrollTop()
   const change = to - start
   const increment = 20
   let currentTime = 0
@@ -43,7 +70,7 @@ export function scrollTo(to, duration, callback) {
     // find the value with the quadratic in-out easing function
     var val = Math.easeInOutQuad(currentTime, start, change, duration)
     // move the document.body
-    move(val)
+    setScrollTop(val)
     // do the animation unless its over
     if (currentTime < duration) {
       requestAnimFrame(animateScroll)
