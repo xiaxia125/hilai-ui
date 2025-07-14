@@ -12,7 +12,7 @@ npm install hilai-ui
 ```javascript
 import { createApp } from 'vue'
 import HilaiUI from 'hilai-ui'
-import 'hilai-ui/lib/style.css'
+import 'hilai-ui/style.css'
 import App from './App.vue'
 
 const app = createApp(App)
