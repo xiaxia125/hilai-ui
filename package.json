@@ -1,6 +1,6 @@
 {
   "name": "hilai-ui",
-  "version": "1.6.0",
+  "version": "1.6.10",
   "description": "Vue3 中基于Element-plus二次封装基础组件文档",
   "author": "hilai",
   "private": false,
@@ -47,8 +47,9 @@
     "vite-plugin-dts": "^4.5.4",
     "vitepress": "^1.6.3",
     "vue": "^3.5.17",
-    "vuedraggable": "^4.1.0"
+    "vue-draggable-plus": "^0.6.0"
   },
-  "dependencies": {
+  "volta": {
+    "node": "20.19.3"
   }
 }

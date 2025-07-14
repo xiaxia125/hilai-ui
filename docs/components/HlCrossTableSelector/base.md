@@ -41,7 +41,7 @@ HlCrossTableSelector/base
 | 参数 | 说明 | 类型 | 默认值 |
 |------|------|------|--------|
 | v-model | 选中的行数据数组 | `array` | `[]` |
-| columns | 表格列配置，继承 el-table-column 的属性 | `array` | `[]` |
+| columns | （必传）表格列配置，继承 el-table-column 的属性 | `array` | `[]` |
 | data | 表格数据 | `array` | `[]` |
 | showSelection | 是否显示选择列 | `boolean` | `false` |
 | loading | 加载状态 | `boolean` | `false` |

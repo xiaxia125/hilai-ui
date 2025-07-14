@@ -4,11 +4,10 @@ export default defineConfig({
   title: "Hilai UI",
   description: "基于Element-plus基础组件封装使用",
   lang: "cn-ZH",
-  base: "/hilai-ui/",
+  base: "/hilai-ui",
   lastUpdated: true,
   themeConfig: {
-    logo: "",
-    // siteTitle: "Hilai-ui",
+    logo: "/public/img/logo.png",
     outline: 3,
     socialLinks: [{ icon: "github", link: "https://github.com/xiaxia125/hilai-ui" }],
     nav: [

@@ -6,9 +6,9 @@ hero:
   name: Hilai UI
   text: 企业级 Vue3 组件库
   tagline: 基于 Element Plus 二次封装，提供高质量的业务组件，助力快速构建企业级应用
-  # image:
-    # src: /logo.png
-    # alt: Hilai UI Logo
+  image:
+    src: /public/img/logo.png
+    alt: Hilai UI Logo
   actions:
     - theme: brand
       text: 🚀 快速开始

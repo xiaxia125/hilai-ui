@@ -107,14 +107,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, defineExpose, watch, onMounted, computed } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Document, CircleCheck, ZoomIn, Delete } from '@element-plus/icons-vue'
-
-// 定义组件名称
-defineOptions({
-  name: 'HlFileUpload'
-})
 
 // 定义文件类型接口
 interface FileItem {
@@ -252,6 +247,7 @@ const handlePreview = (file) => {
 // 处理移除文件
 const handleRemove = (file) => {
   emit('remove', file)
+  console.log('handleRemove', uploadRef.value)
 }
 
 // 判断文件是否为图片

@@ -18,34 +18,31 @@
         </template>
         <div class="popover-content">
           <div>
-            <draggable
-              :list="localColList"
-              itemKey="prop"
+            <VueDraggable
+              v-model="localColList"
+              ref="el"
               @start="dragable = true"
               @end="onListChange"
-              ghost-class="sortable-ghost"
-              handle=".handle"
+              ghostClass="sortable-ghost"
             >
-              <template #item="{ element, index }">
-                <div class="draggable-item">
-                  <el-checkbox
-                    v-model="element.isChecked"
-                    :label="element.label"
+             <div class="draggable-item" v-for="(element, index) in localColList" :key="element.prop">
+                <el-checkbox
+                  v-model="element.isChecked"
+                  :label="element.label"
+                />
+                <div class="draggable-icons">
+                  <img
+                    @click="goTop(element, index)"
+                    class="icon-top"
+                    src="../goTop.svg"
                   />
-                  <div class="draggable-icons">
-                    <img
-                      @click="goTop(element, index)"
-                      class="icon-top"
-                      src="../goTop.svg"
-                    />
-                    <img
-                      class="icon-drag handle"
-                      src="../drag.svg"
-                    />
-                  </div>
+                  <img
+                    class="icon-drag handle"
+                    src="../drag.svg"
+                  />
                 </div>
-              </template>
-            </draggable>
+              </div>
+            </VueDraggable>
           </div>
         </div>
       </el-popover>
@@ -82,10 +79,11 @@
 
 <script lang="ts" setup>
 import { isEqual, cloneDeep } from "lodash-es";
-import draggable from "vuedraggable";
+import { VueDraggable } from 'vue-draggable-plus'
 import { Setting } from "@element-plus/icons-vue";
-import { useAttrs, useSlots, ref, computed, watch, nextTick, reactive,withDefaults } from "vue";
+import { useAttrs, useSlots, ref, computed, watch, nextTick, reactive } from "vue";
 import { paginationEmits } from "element-plus";
+import { ElMessage } from 'element-plus'
 
 interface TableColumn {
   prop: string;
@@ -101,13 +99,14 @@ const props = withDefaults(defineProps<{
   settingBtnText?: string;
   modelValue: any[];
   showSelection?: boolean;
-  columns: TableColumn[];
+  columns: TableColumn[];  // 必传
   data: any[];
   loading?: boolean;
-}>(),{
+}>(), {
   showSelection: false,
   settingBtnText: '列表配置'
-});
+})
+
 const emit = defineEmits<{
   (e: "update:modelValue", val: any[]): void;
   (e: "select", selection: any[], ...args: any[]): void;
@@ -126,6 +125,10 @@ const localColList = ref<TableColumn[]>([]);
 watch(
   () => props.columns,
   (val: TableColumn[]) => {
+    if (!val || val.length === 0) {
+      ElMessage.error('CrossTableSelector 组件的 columns 属性是必传的，且不能为空数组')
+      return
+    }
     localColList.value = cloneDeep(val).map(
       (col: TableColumn, idx: number) => ({
         ...col,

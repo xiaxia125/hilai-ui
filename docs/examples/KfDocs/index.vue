@@ -72,11 +72,7 @@
    const install: any = (app: App) => {
    installComponents(app)
    }
-  // @ts-ignore
-  if (typeof window !== "undefined" && window.Vue) {
-  // @ts-ignore
-  window.Vue.use(install)
-  }
+
 
   // 按需引入
   export {

@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: "HlButton" })
 import { throttle, debounce } from "../../utils"
 import { getCurrentInstance } from "vue"
 const { emit } = getCurrentInstance()

@@ -1,5 +1,5 @@
 <template>
-  <hl-cross-table-selector
+  <!-- <hl-cross-table-selector
     :showSelection="true"
     :columns="columns"
     :data="tableData"
@@ -20,7 +20,12 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     />
-  </div>
+  </div> -->
+  <hl-cross-table-selector :showSelection="false" :data="tableData" :columns="columns">
+      <template #empty>
+        <p>nodata........</p>
+      </template>
+    </hl-cross-table-selector>
 </template>
 
 <script setup lang="ts">
